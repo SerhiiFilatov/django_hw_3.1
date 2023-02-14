@@ -1,0 +1,54 @@
+{% extends 'homepage.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <main class="col-10 col-xs-10 col-sm-9 col-md-5 col-xl-4">
+      <h1 class="h3 text-uppercase text-center mb-4">Register new user</h1>
+
+      <form method="post">
+
+          {% csrf_token %}
+
+{#          {{ form.as_div }}#}
+
+          {% if form.errors %}
+              {{ form.errors }}
+          {% endif %}
+
+        <div class="form-floating mb-3">
+            {{ form.username}}
+          <label for="username" class="form-label"><i class="bi bi-person"></i>&nbsp;{{ form.username.label }}</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            {{ form.email}}
+          <label for="email" class="form-label"><i class="bi bi-envelope"></i>&nbsp;{{ form.email.label}}</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          {{ form.password }}
+          <label for="passwd1" class="form-label"><i class="bi bi-key"></i>&nbsp;{{ form.password.label }}</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          {{ form.confirm_password }}
+          <label for="passwd2" class="form-label"><i class="bi bi-lock"></i>&nbsp;{{ form.confirm_password.label }}</label>
+        </div>
+
+        <div class="text-center mb-3">
+          Already have an account?&nbsp;<a href={% url 'sign_in' %} class="text-decoration-none">Sign In!</a>
+        </div>
+
+        <div class="d-flex justify-content-center mb-3">
+          <button href="" class="btn btn-lg btn-primary">Sign Up</button>
+        </div>
+      </form>
+    </main>
+  </div>
+</div>
+
+{% endblock content %}
+

@@ -1,0 +1,46 @@
+{% load static %}
+
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark fixed-top">
+  <div class="container-fluid px-5">
+    <a href={% url 'home' %} class="navbar-brand">
+      <img src={% static 'img/favicon-32x32.png' %} alt="Task">
+      <span class="align-middle">Task Tracker</span>
+    </a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar"
+            aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item"><a href={% url 'sign_in' %} class="nav-link">Sing In</a></li>
+        <li class="nav-item"><a href={% url 'sign_up' %} class="nav-link">Sing Up</a></li>
+        <li class="nav-item"><a href='http://127.0.0.1:8000/admin/' class="nav-link">Admin</a></li>
+
+        <li class="nav-item d-sm-inline-block d-lg-none"><a href="" class="nav-link">User Profile</a></li>
+        <li class="nav-item d-sm-inline-block d-lg-none"><a href="" class="nav-link">Create Task</a></li>
+        <li class="nav-item d-sm-inline-block d-lg-none"><a href="" class="nav-link">Logout</a></li>
+
+        <li class="nav-item dropdown d-none d-lg-inline-block">
+          <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src={% static 'img/rac.jpg' %} alt="MB" class="rounded-circle"
+                 width="auto" height="32">
+
+              {% if request.user.is_authenticated %}
+                  {{ request.user.username }}
+              {% endif %}
+
+            <span  class="ms-1"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="" class="dropdown-item">User Profile</a></li>
+            <li><a href={% url 'task_create' %} class="dropdown-item">Create Task</a></li>
+            <li><a href='' class="dropdown-item">Task detail</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a href={% url 'log_out' %} class="dropdown-item">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
